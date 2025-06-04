@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaHome, FaTools, FaUser, FaThumbsUp, FaUserTie } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
-import { useAuth } from "../AuthContext"; // adapte si besoin
+import { useAuth } from "../AuthContext";
 
 const navLinks = [
   { path: "/", label: "Accueil", icon: <FaHome /> },
@@ -36,7 +36,7 @@ const NavBar: React.FC = () => {
           </span>
         </NavLink>
       ))}
-      {/* Lien admin visible uniquement pour admin */}
+      {/* Admin link only visible for admin users */}
       {!loading && user && user.role?.toLowerCase() === "admin" && (
         <NavLink
           to={adminLink.path}

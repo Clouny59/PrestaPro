@@ -13,7 +13,8 @@ export default function ProjectsAdmin() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/projects") // adapte l’URL selon ton backend
+    // Update the URL if your backend endpoint differs
+    fetch("http://localhost:5000/admin/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, []);

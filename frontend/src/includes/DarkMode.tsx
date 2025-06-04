@@ -1,4 +1,3 @@
-// PagePreferences.tsx
 import React from "react";
 import { useState } from "react";
 import CustomSwitch from "./CustomSwitch";
@@ -11,7 +10,7 @@ export default function PagePreferences() {
     () => localStorage.getItem("darkmode") === "1"
   );
 
-  // Synchronise dark mode avec body
+  // Sync dark mode with the document body
   React.useEffect(() => {
     if (dark) {
       document.body.classList.add("dark");

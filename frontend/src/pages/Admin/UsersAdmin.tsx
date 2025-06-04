@@ -7,7 +7,7 @@ type User = {
   email?: string;
   role?: string;
   created_at: string;
-  // ...autres champs selon ta BDD
+  // additional fields depending on your database
 };
 
 export default function UsersAdmin() {
@@ -22,7 +22,7 @@ export default function UsersAdmin() {
   function formatDateJMA(dateStr?: string) {
     if (!dateStr) return "-";
     const date = new Date(dateStr);
-    // Ajoute un "0" devant le jour/mois si besoin
+    // Add a leading zero to the day/month when needed
     const j = String(date.getDate()).padStart(2, "0");
     const m = String(date.getMonth() + 1).padStart(2, "0");
     const a = date.getFullYear();

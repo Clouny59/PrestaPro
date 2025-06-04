@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useAuth } from "../../AuthContext"; // adapte le chemin si besoin
+import { useAuth } from "../../AuthContext";
 import DarkMode from "../../includes/DarkMode";
 
 export default function Login() {
@@ -29,7 +29,7 @@ export default function Login() {
         setError(data.error || "Erreur lors de la connexion.");
         return;
       }
-      // Recharge les infos utilisateur réelles après connexion :
+      // Reload user info after login
       const me = await fetch("http://localhost:5000/auth/me", {
         credentials: "include",
       });

@@ -19,7 +19,7 @@ interface AuthRequest extends Request {
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || "monsecretchangele";
 
-// Middleware auth
+// Authentication middleware
 function authenticateToken(req: AuthRequest, res: Response, next: NextFunction) {
   const token = req.cookies?.token;
   if (!token) {
@@ -40,7 +40,7 @@ function authenticateToken(req: AuthRequest, res: Response, next: NextFunction) 
   );
 }
 
-// Register
+// Register a new user
 router.post("/register", async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -66,7 +66,7 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 });
 
-// Login
+// User login
 router.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -86,16 +86,16 @@ router.post("/login", async (req: Request, res: Response) => {
       res.status(401).json({ error: "Email ou mot de passe invalide" });
       return;
     }
-    // Génère le JWT
+    // Generate JWT token
     const token = jwt.sign(
       { id: user.id, email: user.email, name: user.name, role: user.role || "user" },
       JWT_SECRET,
       { expiresIn: "7d" }
     );
-    // Cookie sécurisé
+    // Send secure cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // false en dev/local
+      secure: process.env.NODE_ENV === "production", // true only in production
       sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
@@ -115,7 +115,7 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-// Me
+// Current user info
 router.get("/me", authenticateToken, async (req: AuthRequest, res: Response) => {
   const userInToken = req.user as any;
   if (!userInToken || !userInToken.id) {
@@ -138,7 +138,7 @@ router.get("/me", authenticateToken, async (req: AuthRequest, res: Response) => 
   }
 });
 
-// Logout
+// User logout
 router.post("/logout", (_req, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
