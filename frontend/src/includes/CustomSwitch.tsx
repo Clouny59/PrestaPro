@@ -39,7 +39,7 @@ export default function CustomSwitch({
           }}
         >
           {checked ? (
-            // Check (validé)
+            // Check icon
             <svg width={22} height={22} viewBox="0 0 20 20">
               <polyline
                 points="4 11 9 16 16 5"
@@ -49,7 +49,7 @@ export default function CustomSwitch({
               />
             </svg>
           ) : (
-            // Croix (refusé)
+            // Cross icon
             <svg width={22} height={22} viewBox="0 0 20 20">
               <line
                 x1="6"

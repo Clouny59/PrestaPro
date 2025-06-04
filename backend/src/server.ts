@@ -3,8 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth";
-import adminRoutes from "./routes/admin"; // <- corrige ici (pas juste "admin")
-import usersRoutes from "./routes/users"; // <- corrige ici (pas juste "admin")
+import adminRoutes from "./routes/admin";
+import usersRoutes from "./routes/users";
 import chantiersRoutes from "./routes/chantiers";
 dotenv.config();
 
@@ -23,10 +23,6 @@ app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/users", usersRoutes);
 app.use("/chantiers", chantiersRoutes);
-
-// Si tu as des routes users :
-// import usersRoutes from "./routes/users";
-// app.use("/users", usersRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API Node.js + TypeScript + JWT Cookie sécurisée !");

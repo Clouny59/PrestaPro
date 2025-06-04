@@ -3,7 +3,7 @@ import { pool } from "../config/db";
 
 const router = Router();
 
-// Liste des utilisateurs
+// List users
 router.get("/users", async (_req: Request, res: Response) => {
   try {
     const [rows] = await pool.query("SELECT * FROM users");
@@ -14,7 +14,7 @@ router.get("/users", async (_req: Request, res: Response) => {
   }
 });
 
-// Liste des projets
+// List projects
 router.get("/projects", async (_req: Request, res: Response) => {
   try {
     const [rows] = await pool.query("SELECT * FROM projects");
@@ -27,7 +27,7 @@ router.get("/projects", async (_req: Request, res: Response) => {
 
 router.get("/stats", async (_req: Request, res: Response) => {
   try {
-    // Adapte la colonne "role" selon ta table users
+    // Assumes the user role is stored in a column named "role"
     const [clientRows] = await pool.query("SELECT COUNT(*) as total FROM users WHERE role = 'client'");
     const [artisanRows] = await pool.query("SELECT COUNT(*) as total FROM users WHERE role = 'artisan'");
     const [chantiersRows] = await pool.query("SELECT COUNT(*) as total FROM projects");
@@ -43,10 +43,9 @@ router.get("/stats", async (_req: Request, res: Response) => {
   }
 });
 
-// ...
 router.get("/chantiers-etat", async (_req, res) => {
   try {
-    // Adapte les valeurs selon ta BDD (statut = 'en cours', etc.)
+    // Adjust status values according to your database
     const [attente] = await pool.query("SELECT COUNT(*) as total FROM projects WHERE status = 'attente'");
     const [encours] = await pool.query("SELECT COUNT(*) as total FROM projects WHERE status = 'en cours'");
     const [termine] = await pool.query("SELECT COUNT(*) as total FROM projects WHERE status = 'termine'");

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import UsersAdmin from "./UsersAdmin";
 import ProjectsAdmin from "./ProjectsAdmin";
-// Ajoute d'autres sous-composants (AvisAdmin, ProsAdmin, etc.)
-import { useAuth } from "../../AuthContext"; // adapte le chemin selon ton arborescence
+import { useAuth } from "../../AuthContext";
 import { Navigate } from "react-router-dom";
 import AdminStats from "./AdminStats";
 
